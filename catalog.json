@@ -38,7 +38,7 @@
                   "bytes": 40280965,
                   "sha256": "f9a41c8453dd687f370bee199fd6d47ecf583cc14f1d839a0b416db39b356e8c",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/deim-s-1024x1024-261124.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2.0.0/deim-s-1024x1024-261124.onnx",
                   "input_shapes": {
                     "images": [
                       "N",
@@ -58,7 +58,7 @@
                   "bytes": 36738502,
                   "sha256": "063ec5b3201bce79d56c3ad73b5726cf76ec6a82f42e11a89466ae683755296c",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/parseq-ndl-24x256-30-tiny-499epoch-261124.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2.0.0/parseq-ndl-24x256-30-tiny-499epoch-261124.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -74,7 +74,7 @@
                   "bytes": 37808553,
                   "sha256": "d3dd9e7733aeff5c9f50687c7da6e8d01915a0bf07cfbefe1d9ac58241c61471",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/parseq-ndl-24x384-50-tiny-278epoch-261124.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2.0.0/parseq-ndl-24x384-50-tiny-278epoch-261124.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -90,7 +90,7 @@
                   "bytes": 42588187,
                   "sha256": "06462b0dbd5b0b8508545c8c3d485cf20dbf4ffa652fe145e69c9e7457080602",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/parseq-ndl-24x768-100-tiny-153epoch-261124.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2.0.0/parseq-ndl-24x768-100-tiny-153epoch-261124.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -140,7 +140,7 @@
                   "bytes": 40256763,
                   "sha256": "c156ce0c4e704bc3bf7e4016d0a87b949cffa8b3724f4b4cc696b8284c3c7373",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/deim-s-1024x1024.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-04/deim-s-1024x1024.onnx",
                   "input_shapes": {
                     "images": [
                       "N",
@@ -160,7 +160,7 @@
                   "bytes": 36457393,
                   "sha256": "9e651bae4c1a4d5254da1127e86e82e21ef62d5339b37e62d4a3d3d30831772d",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/parseq-ndl-24x256-30-tiny-189epoch-tegaki3-r8data-202604.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-04/parseq-ndl-24x256-30-tiny-189epoch-tegaki3-r8data-202604.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -176,7 +176,7 @@
                   "bytes": 37808553,
                   "sha256": "49cea9db4552f19eb05c8ee202fcf74714977749b2f4c9376b127fde41b07a99",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/parseq-ndl-24x384-50-tiny-300epoch-tegaki3-r8data-202604.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-04/parseq-ndl-24x384-50-tiny-300epoch-tegaki3-r8data-202604.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -192,7 +192,7 @@
                   "bytes": 42588187,
                   "sha256": "06462b0dbd5b0b8508545c8c3d485cf20dbf4ffa652fe145e69c9e7457080602",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/parseq-ndl-24x768-100-tiny-153epoch-tegaki3-r8data-202604.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-04/parseq-ndl-24x768-100-tiny-153epoch-tegaki3-r8data-202604.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -225,7 +225,7 @@
                   "bytes": 40256763,
                   "sha256": "c156ce0c4e704bc3bf7e4016d0a87b949cffa8b3724f4b4cc696b8284c3c7373",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/deim-s-1024x1024.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-02/deim-s-1024x1024.onnx",
                   "input_shapes": {
                     "images": [
                       "N",
@@ -245,7 +245,7 @@
                   "bytes": 35848117,
                   "sha256": "0bc344b883cfb11f61e15bd02044dcf92997aef1f7dce84419c3aa3c3c677d54",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/parseq-ndl-16x256-30-tiny-192epoch-tegaki3.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-02/parseq-ndl-16x256-30-tiny-192epoch-tegaki3.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -261,7 +261,7 @@
                   "bytes": 36920058,
                   "sha256": "1a60e88c9ffeaefdfe286677146f39fdeb4d0e1acd94ccd974c8943f761d9a08",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/parseq-ndl-16x384-50-tiny-146epoch-tegaki2.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-02/parseq-ndl-16x384-50-tiny-146epoch-tegaki2.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -277,7 +277,7 @@
                   "bytes": 40984184,
                   "sha256": "712c7184a0a80a9048a5aefbfacd63876bacfb1c8d4d2f5c252dc39ad12bc3dd",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/parseq-ndl-16x768-100-tiny-165epoch-tegaki2.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-onnx/resolve/b17a1f47e8059fc307f7b30c331324dd8399d98d/2026-02/parseq-ndl-16x768-100-tiny-165epoch-tegaki2.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -401,7 +401,7 @@
                   "bytes": 40188733,
                   "sha256": "f46267754d406431f6e035f9e20b8552af8ff1ab5ca13bcac8f4b1abbd02090c",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/ede4283845cdc0ba2bda8b7ebfc3dc80b33c92c8/src/model/rtmdet-s-1280x1280.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-onnx/resolve/2c73efa062991c557137a55153d393c21d78caea/2026-03/rtmdet-s-1280x1280.onnx",
                   "input_shapes": {
                     "input": [
                       1,
@@ -417,7 +417,7 @@
                   "bytes": 42442247,
                   "sha256": "fd75b2c435d053fab9f9e563393ee5b6654a41434b2358b50fb63498a2c85b79",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/ede4283845cdc0ba2bda8b7ebfc3dc80b33c92c8/src/model/parseq-ndl-32x384-tiny-10.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-onnx/resolve/2c73efa062991c557137a55153d393c21d78caea/2026-03/parseq-ndl-32x384-tiny-10.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -499,7 +499,7 @@
                   "bytes": 40188733,
                   "sha256": "f46267754d406431f6e035f9e20b8552af8ff1ab5ca13bcac8f4b1abbd02090c",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/22be4cc98d542afc7422f9a67d0529850b1e4e12/src/model/rtmdet-s-1280x1280.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-onnx/resolve/2c73efa062991c557137a55153d393c21d78caea/2024-12/rtmdet-s-1280x1280.onnx",
                   "input_shapes": {
                     "input": [
                       1,
@@ -515,7 +515,7 @@
                   "bytes": 37752180,
                   "sha256": "18dbbab16547084cbc18edb4297826f0d46f1853e0d60a7639acab4d5872da5b",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/22be4cc98d542afc7422f9a67d0529850b1e4e12/src/model/parseq-ndl-32x384-tiny-10.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-onnx/resolve/2c73efa062991c557137a55153d393c21d78caea/2024-12/parseq-ndl-32x384-tiny-10.onnx",
                   "input_shapes": {
                     "images": [
                       1,
@@ -548,7 +548,7 @@
                   "bytes": 40189181,
                   "sha256": "6c7336a754fc614407686b566f0aa209d93f9b2bdb17858999dd02130e9955a0",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/95692df82f15b5fc225cbbc5134d2efc3cfb522d/src/model/rtmdet-s-1280x1280.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-onnx/resolve/2c73efa062991c557137a55153d393c21d78caea/2024-11/rtmdet-s-1280x1280.onnx",
                   "input_shapes": {
                     "input": [
                       1,
@@ -564,7 +564,7 @@
                   "bytes": 37752180,
                   "sha256": "18dbbab16547084cbc18edb4297826f0d46f1853e0d60a7639acab4d5872da5b",
                   "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/95692df82f15b5fc225cbbc5134d2efc3cfb522d/src/model/parseq-ndl-32x384-tiny-10.onnx",
-                  "url": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-onnx/resolve/2c73efa062991c557137a55153d393c21d78caea/2024-11/parseq-ndl-32x384-tiny-10.onnx",
                   "input_shapes": {
                     "images": [
                       1,
