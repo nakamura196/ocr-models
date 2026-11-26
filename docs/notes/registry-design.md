@@ -55,3 +55,9 @@ The hand-off's SHA-256 for `parseq-ndl-24x384-50-tiny-278epoch-261124.onnx` had 
 - Pre-processing entries in `inference` are read from upstream code (`deim.py`, `parseq.py`, `rtmdet.py`),
   not tested against outputs. `verify.py` (compare with upstream on sample images) is still to write.
 - The web conversion scripts (DEIM → `deim-s-layers`, RTMDet cut before NMS) are not in the repository yet.
+
+## 2026-11-25 — Published on GitHub
+
+- Initial commit `55ecf93` pushed to https://github.com/nakamura196/ocr-models (public). CI passed on the first run.
+- Enabled: Dependabot alerts and security updates, secret scanning, push protection, auto-merge, delete branch on merge.
+- Hugging Face not yet published (`validate.py`: 18 todos, all "not yet mirrored").
