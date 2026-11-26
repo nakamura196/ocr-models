@@ -61,3 +61,14 @@ The hand-off's SHA-256 for `parseq-ndl-24x384-50-tiny-278epoch-261124.onnx` had 
 - Initial commit `55ecf93` pushed to https://github.com/nakamura196/ocr-models (public). CI passed on the first run.
 - Enabled: Dependabot alerts and security updates, secret scanning, push protection, auto-merge, delete branch on merge.
 - Hugging Face not yet published (`validate.py`: 18 todos, all "not yet mirrored").
+
+## 2026-11-26 — Published on Hugging Face
+
+- Created `nakamura196/ndlocr-lite-onnx` (commit `b17a1f4`, 12 files: 2.0.0, 2026-04, 2026-02) and
+  `nakamura196/ndlkotenocr-lite-onnx` (commit `2c73efa`, 6 files: 2026-03, 2024-12, 2024-11) with `publish_hf.py --apply`.
+  All 18 `url`s in `catalog.json` now pin those commits; `validate.py` reports 0 errors, 0 todos.
+- Spot-checked with `curl -H "Origin: https://kasane.ldas.jp"`: `access-control-allow-origin: *`, and the downloaded
+  bytes match the catalog SHA-256 (one file per repo).
+- Token: a dedicated fine-grained token (`repo.write` on the user namespace only), not the token of another project.
+- Web variants are not mirrored yet (conversion scripts still to add). The old `*-web-onnx` repos are not yet
+  pointed at the new ones (README change still to do).
