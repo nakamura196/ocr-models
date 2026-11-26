@@ -1,0 +1,785 @@
+{
+  "$schema": "./schema/catalog.schema.json",
+  "catalog_version": 1,
+  "models": [
+    {
+      "id": "ndlocr-lite",
+      "name": {
+        "en": "NDLOCR-Lite",
+        "ja": "NDLOCR-Lite"
+      },
+      "description": {
+        "en": "Layout detection (DEIM) and line recognition (PARSeq) for modern Japanese print, by the National Diet Library.",
+        "ja": "国立国会図書館による、近代以降の活字資料の版面検出（DEIM）と行の文字認識（PARSeq）。"
+      },
+      "license": "CC-BY-4.0",
+      "credit": "NDLOCR-Lite, National Diet Library (https://github.com/ndl-lab/ndlocr-lite), CC BY 4.0",
+      "upstream": {
+        "repo": "https://github.com/ndl-lab/ndlocr-lite"
+      },
+      "releases": [
+        {
+          "id": "2.0.0",
+          "status": "pending",
+          "upstream_ref": {
+            "tag": "2.0.0",
+            "commit": "1f3adc7af311af1ce4cbbd4d9089f30781d01313",
+            "date": "2026-11-24"
+          },
+          "notes": "Detector and the short/medium recognizers were retrained (filenames end in -261124). The long-line recognizer is byte-identical to the 2026-04 release under a new filename. src/config/ndl.yaml keeps the same 17 class names and adds a 'markdown' mapping. Upstream also serves these files from lab.ndl.go.jp, without CORS headers. Despite its filename, the detector takes 800x800 input.",
+          "charset": "ndlmoji-3bb041a1",
+          "classes": "ndl-layout-7dea7e5a",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "deim-s-1024x1024-261124.onnx",
+                  "bytes": 40280965,
+                  "sha256": "f9a41c8453dd687f370bee199fd6d47ecf583cc14f1d839a0b416db39b356e8c",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/deim-s-1024x1024-261124.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      "N",
+                      3,
+                      800,
+                      800
+                    ],
+                    "orig_target_sizes": [
+                      "N",
+                      2
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-30",
+                  "name": "parseq-ndl-24x256-30-tiny-499epoch-261124.onnx",
+                  "bytes": 36738502,
+                  "sha256": "063ec5b3201bce79d56c3ad73b5726cf76ec6a82f42e11a89466ae683755296c",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/parseq-ndl-24x256-30-tiny-499epoch-261124.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      24,
+                      256
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-50",
+                  "name": "parseq-ndl-24x384-50-tiny-278epoch-261124.onnx",
+                  "bytes": 37808553,
+                  "sha256": "d3dd9e7733aeff5c9f50687c7da6e8d01915a0bf07cfbefe1d9ac58241c61471",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/parseq-ndl-24x384-50-tiny-278epoch-261124.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      24,
+                      384
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-100",
+                  "name": "parseq-ndl-24x768-100-tiny-153epoch-261124.onnx",
+                  "bytes": 42588187,
+                  "sha256": "06462b0dbd5b0b8508545c8c3d485cf20dbf4ffa652fe145e69c9e7457080602",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/1f3adc7af311af1ce4cbbd4d9089f30781d01313/src/model/parseq-ndl-24x768-100-tiny-153epoch-261124.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      24,
+                      768
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "inference": {
+            "detector": {
+              "preprocess": "pad-square-rgb-imagenet",
+              "score_threshold": 0.1,
+              "conf_threshold": 0.1,
+              "iou_threshold": 0.4
+            },
+            "recognizer": {
+              "preprocess": "rgb-scale-minus1-1",
+              "rotate_if_h_gt_0.8w": true,
+              "max_chars": {
+                "recognizer-30": 30,
+                "recognizer-50": 50,
+                "recognizer-100": 100
+              }
+            }
+          }
+        },
+        {
+          "id": "2026-04",
+          "status": "current",
+          "upstream_ref": {
+            "commit": "d25e0d415b607ad44459ca6b95c7512a54363935",
+            "date": "2026-08-14"
+          },
+          "notes": "24px-high PARSeq recognizers. Used by Local OCR (desktop) as of 2026-11-25.",
+          "charset": "ndlmoji-3bb041a1",
+          "classes": "ndl-layout-b04ca8fd",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "deim-s-1024x1024.onnx",
+                  "bytes": 40256763,
+                  "sha256": "c156ce0c4e704bc3bf7e4016d0a87b949cffa8b3724f4b4cc696b8284c3c7373",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/deim-s-1024x1024.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      "N",
+                      3,
+                      800,
+                      800
+                    ],
+                    "orig_target_sizes": [
+                      "N",
+                      2
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-30",
+                  "name": "parseq-ndl-24x256-30-tiny-189epoch-tegaki3-r8data-202604.onnx",
+                  "bytes": 36457393,
+                  "sha256": "9e651bae4c1a4d5254da1127e86e82e21ef62d5339b37e62d4a3d3d30831772d",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/parseq-ndl-24x256-30-tiny-189epoch-tegaki3-r8data-202604.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      24,
+                      256
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-50",
+                  "name": "parseq-ndl-24x384-50-tiny-300epoch-tegaki3-r8data-202604.onnx",
+                  "bytes": 37808553,
+                  "sha256": "49cea9db4552f19eb05c8ee202fcf74714977749b2f4c9376b127fde41b07a99",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/parseq-ndl-24x384-50-tiny-300epoch-tegaki3-r8data-202604.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      24,
+                      384
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-100",
+                  "name": "parseq-ndl-24x768-100-tiny-153epoch-tegaki3-r8data-202604.onnx",
+                  "bytes": 42588187,
+                  "sha256": "06462b0dbd5b0b8508545c8c3d485cf20dbf4ffa652fe145e69c9e7457080602",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/d25e0d415b607ad44459ca6b95c7512a54363935/src/model/parseq-ndl-24x768-100-tiny-153epoch-tegaki3-r8data-202604.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      24,
+                      768
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "2026-02",
+          "status": "legacy",
+          "upstream_ref": {
+            "commit": "109e62759d59002673765e0f7f2cfc663443585d",
+            "date": "2026-02-24"
+          },
+          "notes": "16px-high PARSeq recognizers. Used by Local OCR iOS, KotenOCR iOS, and IIIF Kasane (web variant) as of 2026-11-25. Do not feed 24px models to code written for this release.",
+          "charset": "ndlmoji-3bb041a1",
+          "classes": "ndl-layout-b04ca8fd",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "deim-s-1024x1024.onnx",
+                  "bytes": 40256763,
+                  "sha256": "c156ce0c4e704bc3bf7e4016d0a87b949cffa8b3724f4b4cc696b8284c3c7373",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/deim-s-1024x1024.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      "N",
+                      3,
+                      800,
+                      800
+                    ],
+                    "orig_target_sizes": [
+                      "N",
+                      2
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-30",
+                  "name": "parseq-ndl-16x256-30-tiny-192epoch-tegaki3.onnx",
+                  "bytes": 35848117,
+                  "sha256": "0bc344b883cfb11f61e15bd02044dcf92997aef1f7dce84419c3aa3c3c677d54",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/parseq-ndl-16x256-30-tiny-192epoch-tegaki3.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      16,
+                      256
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-50",
+                  "name": "parseq-ndl-16x384-50-tiny-146epoch-tegaki2.onnx",
+                  "bytes": 36920058,
+                  "sha256": "1a60e88c9ffeaefdfe286677146f39fdeb4d0e1acd94ccd974c8943f761d9a08",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/parseq-ndl-16x384-50-tiny-146epoch-tegaki2.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      16,
+                      384
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-100",
+                  "name": "parseq-ndl-16x768-100-tiny-165epoch-tegaki2.onnx",
+                  "bytes": 40984184,
+                  "sha256": "712c7184a0a80a9048a5aefbfacd63876bacfb1c8d4d2f5c252dc39ad12bc3dd",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlocr-lite/109e62759d59002673765e0f7f2cfc663443585d/src/model/parseq-ndl-16x768-100-tiny-165epoch-tegaki2.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      16,
+                      768
+                    ]
+                  }
+                }
+              ]
+            },
+            "web": {
+              "derived_from": "native",
+              "conversion": "Detector graph rewritten for onnxruntime-web (WebGPU). The conversion script is not yet in this repository (Phase 1 task).",
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "ndlocr-lite-deim-s-layers.onnx",
+                  "bytes": 40259416,
+                  "sha256": "4cf708288c3a2e36ff4c10d4508e2cf83fadb7c117fe585542744e009cbcae79",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-web-onnx/resolve/6b27f9f4586277e050043206c8c1b12a7a565cb0/ndlocr-lite-deim-s-layers.onnx",
+                  "input_shapes": {
+                    "images": [
+                      "N",
+                      3,
+                      800,
+                      800
+                    ],
+                    "orig_target_sizes": [
+                      "N",
+                      2
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-30",
+                  "name": "parseq-ndl-16x256-30-tiny-192epoch-tegaki3.onnx",
+                  "bytes": 35848117,
+                  "sha256": "0bc344b883cfb11f61e15bd02044dcf92997aef1f7dce84419c3aa3c3c677d54",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-web-onnx/resolve/6b27f9f4586277e050043206c8c1b12a7a565cb0/parseq-ndl-16x256-30-tiny-192epoch-tegaki3.onnx",
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      16,
+                      256
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-50",
+                  "name": "parseq-ndl-16x384-50-tiny-146epoch-tegaki2.onnx",
+                  "bytes": 36920058,
+                  "sha256": "1a60e88c9ffeaefdfe286677146f39fdeb4d0e1acd94ccd974c8943f761d9a08",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-web-onnx/resolve/6b27f9f4586277e050043206c8c1b12a7a565cb0/parseq-ndl-16x384-50-tiny-146epoch-tegaki2.onnx",
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      16,
+                      384
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-100",
+                  "name": "parseq-ndl-16x768-100-tiny-165epoch-tegaki2.onnx",
+                  "bytes": 40984184,
+                  "sha256": "712c7184a0a80a9048a5aefbfacd63876bacfb1c8d4d2f5c252dc39ad12bc3dd",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/ndlocr-lite-web-onnx/resolve/6b27f9f4586277e050043206c8c1b12a7a565cb0/parseq-ndl-16x768-100-tiny-165epoch-tegaki2.onnx",
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      16,
+                      768
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ndlkotenocr-lite",
+      "name": {
+        "en": "NDL Kotenseki OCR-Lite",
+        "ja": "NDL古典籍OCR-Lite"
+      },
+      "description": {
+        "en": "Layout detection (RTMDet) and line recognition (PARSeq) for pre-modern Japanese books, by the National Diet Library.",
+        "ja": "国立国会図書館による、古典籍の版面検出（RTMDet）と行の文字認識（PARSeq）。"
+      },
+      "license": "CC-BY-4.0",
+      "credit": "NDL Kotenseki OCR-Lite, National Diet Library (https://github.com/ndl-lab/ndlkotenocr-lite), CC BY 4.0",
+      "upstream": {
+        "repo": "https://github.com/ndl-lab/ndlkotenocr-lite"
+      },
+      "releases": [
+        {
+          "id": "2026-03",
+          "status": "current",
+          "upstream_ref": {
+            "commit": "ede4283845cdc0ba2bda8b7ebfc3dc80b33c92c8"
+          },
+          "notes": "Model files are identical (git blob) from tag 1.4.3 (008c098) through 39e076f (2026-11-04). Used by Local OCR (desktop) and IIIF Kasane (web variant) as of 2026-11-25. Despite its filename, rtmdet-s-1280x1280.onnx takes 1024x1024 input in this release.",
+          "charset": "ndlmoji-9cc3e3f1",
+          "classes": "ndl-layout-1dd357ca",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "rtmdet-s-1280x1280.onnx",
+                  "bytes": 40188733,
+                  "sha256": "f46267754d406431f6e035f9e20b8552af8ff1ab5ca13bcac8f4b1abbd02090c",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/ede4283845cdc0ba2bda8b7ebfc3dc80b33c92c8/src/model/rtmdet-s-1280x1280.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "input": [
+                      1,
+                      3,
+                      1024,
+                      1024
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer",
+                  "name": "parseq-ndl-32x384-tiny-10.onnx",
+                  "bytes": 42442247,
+                  "sha256": "fd75b2c435d053fab9f9e563393ee5b6654a41434b2358b50fb63498a2c85b79",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/ede4283845cdc0ba2bda8b7ebfc3dc80b33c92c8/src/model/parseq-ndl-32x384-tiny-10.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      32,
+                      384
+                    ]
+                  }
+                }
+              ]
+            },
+            "web": {
+              "derived_from": "native",
+              "conversion": "Detector graph cut before NMS for onnxruntime-web. The conversion script is not yet in this repository (Phase 1 task).",
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "ndlkotenocr-lite-rtmdet-s-viz.onnx",
+                  "bytes": 40213139,
+                  "sha256": "8f3bcb556ca55fcf1d3f3921e6a39ede1fdd9cbc691ae0d77b0936388b7be0c5",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-web-onnx/resolve/ac0d8e06addea06302e0fa7e10e555938ac29c0f/ndlkotenocr-lite-rtmdet-s-viz.onnx",
+                  "input_shapes": {
+                    "input": [
+                      1,
+                      3,
+                      1024,
+                      1024
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer",
+                  "name": "parseq-ndl-32x384-tiny-10.onnx",
+                  "bytes": 42442247,
+                  "sha256": "fd75b2c435d053fab9f9e563393ee5b6654a41434b2358b50fb63498a2c85b79",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/ndlkotenocr-lite-web-onnx/resolve/ac0d8e06addea06302e0fa7e10e555938ac29c0f/parseq-ndl-32x384-tiny-10.onnx",
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      32,
+                      384
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "inference": {
+            "detector": {
+              "preprocess": "pad-square-bgr-mean-std-0-255",
+              "score_threshold": 0.1,
+              "conf_threshold": 0.1,
+              "iou_threshold": 0.4
+            },
+            "recognizer": {
+              "preprocess": "bgr-scale-0-1"
+            }
+          }
+        },
+        {
+          "id": "2024-12",
+          "status": "legacy",
+          "upstream_ref": {
+            "commit": "22be4cc98d542afc7422f9a67d0529850b1e4e12",
+            "date": "2024-12-24"
+          },
+          "notes": "Older recognizer (37,752,180 bytes). Used by Local OCR iOS as of 2026-11-25. Despite its filename, rtmdet-s-1280x1280.onnx takes 1024x1024 input in this release.",
+          "charset": "ndlmoji-9cc3e3f1",
+          "classes": "ndl-layout-1dd357ca",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "rtmdet-s-1280x1280.onnx",
+                  "bytes": 40188733,
+                  "sha256": "f46267754d406431f6e035f9e20b8552af8ff1ab5ca13bcac8f4b1abbd02090c",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/22be4cc98d542afc7422f9a67d0529850b1e4e12/src/model/rtmdet-s-1280x1280.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "input": [
+                      1,
+                      3,
+                      1024,
+                      1024
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer",
+                  "name": "parseq-ndl-32x384-tiny-10.onnx",
+                  "bytes": 37752180,
+                  "sha256": "18dbbab16547084cbc18edb4297826f0d46f1853e0d60a7639acab4d5872da5b",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/22be4cc98d542afc7422f9a67d0529850b1e4e12/src/model/parseq-ndl-32x384-tiny-10.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      32,
+                      384
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "2024-11",
+          "status": "legacy",
+          "upstream_ref": {
+            "commit": "95692df82f15b5fc225cbbc5134d2efc3cfb522d",
+            "date": "2024-11-22"
+          },
+          "notes": "Used by KotenOCR iOS setup.sh as of 2026-11-25. Its detector here is 40,189,181 bytes; setup.sh expects 40,188,733, which is the detector of 22be4cc and later.",
+          "charset": "ndlmoji-3bb041a1",
+          "classes": "ndl-layout-1dd357ca",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "rtmdet-s-1280x1280.onnx",
+                  "bytes": 40189181,
+                  "sha256": "6c7336a754fc614407686b566f0aa209d93f9b2bdb17858999dd02130e9955a0",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/95692df82f15b5fc225cbbc5134d2efc3cfb522d/src/model/rtmdet-s-1280x1280.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "input": [
+                      1,
+                      3,
+                      1280,
+                      1280
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer",
+                  "name": "parseq-ndl-32x384-tiny-10.onnx",
+                  "bytes": 37752180,
+                  "sha256": "18dbbab16547084cbc18edb4297826f0d46f1853e0d60a7639acab4d5872da5b",
+                  "source": "https://raw.githubusercontent.com/ndl-lab/ndlkotenocr-lite/95692df82f15b5fc225cbbc5134d2efc3cfb522d/src/model/parseq-ndl-32x384-tiny-10.onnx",
+                  "url": null,
+                  "input_shapes": {
+                    "images": [
+                      1,
+                      3,
+                      32,
+                      384
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ppocrv6-medium",
+      "name": {
+        "en": "PP-OCRv6 medium",
+        "ja": "PP-OCRv6 medium"
+      },
+      "description": {
+        "en": "Multilingual text detection and recognition by PaddlePaddle. Official ONNX export, referenced directly (not mirrored).",
+        "ja": "PaddlePaddle による多言語の行検出と文字認識。公式の ONNX をそのまま参照する（写さない）。"
+      },
+      "license": "Apache-2.0",
+      "credit": "PP-OCRv6, PaddlePaddle (https://github.com/PaddlePaddle/PaddleOCR), Apache License 2.0",
+      "upstream": {
+        "repo": "https://github.com/PaddlePaddle/PaddleOCR"
+      },
+      "releases": [
+        {
+          "id": "hf-2026",
+          "status": "current",
+          "notes": "Used by Local OCR (desktop and iOS) and IIIF Kasane as of 2026-11-25.",
+          "charset": "ppocrv6",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "inference.onnx",
+                  "bytes": 62032837,
+                  "sha256": "eb13b44b25bb36f89528b68720af8a61d9cf381176107f465db1757b65d086e1",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_medium_det_onnx/resolve/61323801669c338b7891481ec7bac61ce31b576a/inference.onnx",
+                  "input_shapes": {
+                    "x": [
+                      "DynamicDimension.0",
+                      3,
+                      "DynamicDimension.1",
+                      "DynamicDimension.2"
+                    ]
+                  }
+                },
+                {
+                  "role": "detector-config",
+                  "name": "inference.yml",
+                  "bytes": 886,
+                  "sha256": "7298d5ead546584af2504d03355f881ac7a7bc0eb1e282d3e159277c1d0af871",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_medium_det_onnx/resolve/61323801669c338b7891481ec7bac61ce31b576a/inference.yml"
+                },
+                {
+                  "role": "recognizer",
+                  "name": "inference.onnx",
+                  "bytes": 76554979,
+                  "sha256": "9c09abf0957f7968c7586464b7397b84ad2387a0497a351af40e9acc71b673ba",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_medium_rec_onnx/resolve/50c7eacafc52fa7bcf4194e8cd08e46f8558504b/inference.onnx",
+                  "input_shapes": {
+                    "x": [
+                      "DynamicDimension.0",
+                      3,
+                      48,
+                      "DynamicDimension.1"
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-config",
+                  "name": "inference.yml",
+                  "bytes": 150580,
+                  "sha256": "991b700facf5b50a7de193468207d5f4255b538dde0d312ae3b7c7a9b6873129",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_medium_rec_onnx/resolve/50c7eacafc52fa7bcf4194e8cd08e46f8558504b/inference.yml"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ppocrv6-small",
+      "name": {
+        "en": "PP-OCRv6 small",
+        "ja": "PP-OCRv6 small"
+      },
+      "description": {
+        "en": "Smaller PP-OCRv6 detector and recognizer. Official ONNX export, referenced directly (not mirrored).",
+        "ja": "PP-OCRv6 の小さい版。公式の ONNX をそのまま参照する（写さない）。"
+      },
+      "license": "Apache-2.0",
+      "credit": "PP-OCRv6, PaddlePaddle (https://github.com/PaddlePaddle/PaddleOCR), Apache License 2.0",
+      "upstream": {
+        "repo": "https://github.com/PaddlePaddle/PaddleOCR"
+      },
+      "releases": [
+        {
+          "id": "hf-2026",
+          "status": "current",
+          "notes": "Used by IIIF Kasane as of 2026-11-25.",
+          "charset": "ppocrv6",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "detector",
+                  "name": "inference.onnx",
+                  "bytes": 9880512,
+                  "sha256": "d73e0058b7a8086bbd57f3d10b8bcd4ff95363f67e06e2762b5e814fe9c9410e",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/resolve/28fe5895c24fd108c19eb3e8479f4ab385fbfc62/inference.onnx",
+                  "input_shapes": {
+                    "x": [
+                      "DynamicDimension.0",
+                      3,
+                      "DynamicDimension.1",
+                      "DynamicDimension.2"
+                    ]
+                  }
+                },
+                {
+                  "role": "detector-config",
+                  "name": "inference.yml",
+                  "bytes": 885,
+                  "sha256": "193f435274bf9f0b5f71a929bbfbcf148282df7e633b34e7c373e8f44741b516",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_small_det_onnx/resolve/28fe5895c24fd108c19eb3e8479f4ab385fbfc62/inference.yml"
+                },
+                {
+                  "role": "recognizer",
+                  "name": "inference.onnx",
+                  "bytes": 21159378,
+                  "sha256": "5435fd747c9e0efe15a96d0b378d5bd157e9492ed8fd80edf08f30d02fa24634",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_small_rec_onnx/resolve/b8f84f0b80c529de40b4fbb3544b84fa7233a513/inference.onnx",
+                  "input_shapes": {
+                    "x": [
+                      "DynamicDimension.0",
+                      3,
+                      48,
+                      "DynamicDimension.1"
+                    ]
+                  }
+                },
+                {
+                  "role": "recognizer-config",
+                  "name": "inference.yml",
+                  "bytes": 150579,
+                  "sha256": "ab078671bb49f06228eadccd34f1bb501e157f7a047095ffb943ba81512c77d1",
+                  "source": null,
+                  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_small_rec_onnx/resolve/b8f84f0b80c529de40b4fbb3544b84fa7233a513/inference.yml"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "yigdzin1",
+      "name": {
+        "en": "Yigdzin-1 (GGUF)",
+        "ja": "Yigdzin-1（GGUF）"
+      },
+      "description": {
+        "en": "Tibetan OCR vision-language model (BDRC Yigdzin-1) converted to GGUF for llama.cpp.",
+        "ja": "チベット文字の OCR 用の視覚言語モデルを、llama.cpp 用の GGUF に変換したもの。"
+      },
+      "license": "Apache-2.0",
+      "credit": "Yigdzin-1 (BDRC/tibetan-ocr, https://huggingface.co/BDRC/tibetan-ocr), fine-tuned from PaddleOCR-VL-1.6; GGUF conversion at https://huggingface.co/nakamura196/yigdzin1-gguf, Apache License 2.0",
+      "upstream": {
+        "repo": "https://huggingface.co/BDRC/tibetan-ocr"
+      },
+      "releases": [
+        {
+          "id": "gguf-1",
+          "status": "current",
+          "notes": "Local OCR (desktop) fetches these from the 'main' branch, not a fixed commit, as of 2026-11-25. Pin it to the commit below.",
+          "variants": {
+            "native": {
+              "files": [
+                {
+                  "role": "model",
+                  "name": "yigdzin1.gguf",
+                  "bytes": 750993408,
+                  "sha256": "736e81062df75b68f25a218fd637050420462fc751793a3915224b2f420516a4",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/yigdzin1-gguf/resolve/fdf4bd14887ccf4c0f43744ad1def04ed3cc9d54/yigdzin1.gguf"
+                },
+                {
+                  "role": "mmproj",
+                  "name": "yigdzin1-mmproj.gguf",
+                  "bytes": 880415008,
+                  "sha256": "bd619f8e80228b34a14ccd99092402da967cfae9e045880cb572f4d48e2fcfbd",
+                  "source": null,
+                  "url": "https://huggingface.co/nakamura196/yigdzin1-gguf/resolve/fdf4bd14887ccf4c0f43744ad1def04ed3cc9d54/yigdzin1-mmproj.gguf"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

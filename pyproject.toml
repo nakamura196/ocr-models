@@ -1,0 +1,28 @@
+[project]
+name = "ocr-models"
+version = "0.1.0"
+description = "Catalog, charsets, and conversion/verification scripts for the OCR models shared by Local OCR, KotenOCR, and IIIF Kasane."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+  "jsonschema==4.26.0",
+  "pyyaml==6.0.3",
+]
+
+[project.optional-dependencies]
+# Needed only to fetch models and read ONNX graphs (sync_upstream.py) or upload (publish_hf.py).
+sync = [
+  "onnx==1.23.2",
+  "huggingface-hub==2.4.0",
+]
+
+[dependency-groups]
+dev = ["pytest==9.2.0"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["scripts"]
+testpaths = ["tests"]

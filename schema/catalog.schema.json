@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nakamura196/ocr-models/schema/catalog.schema.json",
+  "title": "OCR model catalog",
+  "type": "object",
+  "required": ["catalog_version", "models"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "catalog_version": { "const": 1 },
+    "models": { "type": "array", "items": { "$ref": "#/$defs/model" } }
+  },
+  "$defs": {
+    "i18n": {
+      "type": "object",
+      "required": ["en", "ja"],
+      "additionalProperties": false,
+      "properties": { "en": { "type": "string" }, "ja": { "type": "string" } }
+    },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "model": {
+      "type": "object",
+      "required": ["id", "name", "description", "license", "credit", "upstream", "releases"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "name": { "$ref": "#/$defs/i18n" },
+        "description": { "$ref": "#/$defs/i18n" },
+        "license": { "type": "string", "description": "SPDX identifier" },
+        "credit": { "type": "string", "description": "Attribution text to show in apps" },
+        "upstream": {
+          "type": "object",
+          "required": ["repo"],
+          "additionalProperties": false,
+          "properties": { "repo": { "type": "string", "format": "uri" } }
+        },
+        "releases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/release" } }
+      }
+    },
+    "release": {
+      "type": "object",
+      "required": ["id", "status", "variants"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "status": {
+          "enum": ["pending", "current", "legacy"],
+          "description": "pending: not yet published to its delivery URL. current: recommended for apps. legacy: still used by some app; do not adopt for new work."
+        },
+        "upstream_ref": {
+          "type": "object",
+          "required": ["commit"],
+          "additionalProperties": false,
+          "properties": {
+            "tag": { "type": "string" },
+            "commit": { "$ref": "#/$defs/commit" },
+            "date": { "type": "string", "format": "date" }
+          }
+        },
+        "notes": { "type": "string" },
+        "charset": { "type": "string", "description": "File stem under charsets/" },
+        "classes": { "type": "string", "description": "File stem under classes/" },
+        "variants": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "enum": ["native", "web"] },
+          "additionalProperties": { "$ref": "#/$defs/variant" }
+        },
+        "inference": { "type": "object", "description": "Pre/post-processing parameters, keyed by role family" }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "required": ["files"],
+      "additionalProperties": false,
+      "properties": {
+        "derived_from": { "enum": ["native"] },
+        "conversion": { "type": "string", "description": "What was changed, and the script that does it" },
+        "files": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/file" } }
+      }
+    },
+    "file": {
+      "type": "object",
+      "required": ["role", "name", "bytes", "sha256", "source", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "role": { "type": "string" },
+        "name": { "type": "string" },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "oneOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }] },
+        "source": {
+          "oneOf": [{ "type": "string", "format": "uri" }, { "type": "null" }],
+          "description": "Where the bytes came from (provenance), pinned to a commit. Not for apps to fetch."
+        },
+        "url": {
+          "oneOf": [{ "type": "string", "format": "uri" }, { "type": "null" }],
+          "description": "Where apps fetch the file. Must be pinned to a 40-hex commit. null until published."
+        },
+        "input_shapes": {
+          "type": "object",
+          "description": "ONNX graph inputs as read by scripts/sync_upstream.py. Dynamic axes are strings.",
+          "additionalProperties": { "type": "array", "items": { "type": ["integer", "string"] } }
+        }
+      }
+    }
+  }
+}

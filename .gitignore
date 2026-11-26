@@ -1,0 +1,31 @@
+# env / secret files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.kdbx
+credentials.json
+service-account*.json
+gha-creds-*.json
+.npmrc
+
+# model binaries never go into git (they live on Hugging Face)
+*.onnx
+*.gguf
+*.part
+.cache/
+
+# python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/settings.json
